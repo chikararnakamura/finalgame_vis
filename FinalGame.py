@@ -18,7 +18,7 @@ PROBLEM_DESC = \
 class Card():
     ''' Name: string for the name of the card
 Stats: dictionary that represents the change of the indicators in the game.
-It is in the order [CC: int, GDP: int, EF: int]
+It is in the order [CC: int, GDP: int, EF: int, HI: int]
 Cost: cost for the certain action, will also be a dictionary'''
     def __init__(self, name, stats, cost, pros, cons):
          self.name = name
@@ -55,7 +55,7 @@ Cost: cost for the certain action, will also be a dictionary'''
         # for use by operators in creating new states.
         new = Card('', {}, {}, '', '')
         new.name = self.name
-        for p in ['CC', 'GDP', 'EF']:
+        for p in ['CC', 'GDP', 'EF', 'HI']:
             new.stats[p] = self.stats[p] 
         for p in ['MONEY']:
             new.cost[p] = self.cost[p]
@@ -109,59 +109,59 @@ resources: dictionary displaying the remaining resources of the player (currentl
         for p in ['MONEY']:
             new.cost[p] = self.cost[p] 
         return new
-GOOD_PLAYER_CARDS = [Card('Test_1',{'CC': 10, 'GDP': 0, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_2',{'CC': 2, 'GDP': 0, 'EF': 0}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_3',{'CC': -10, 'GDP': 5, 'EF': 10}, {'MONEY': 5}, 'a', 'b'),
-Card('Test_4',{'CC': 30, 'GDP': 20, 'EF': -20}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_5',{'CC': 0, 'GDP': -10, 'EF': 10}, {'MONEY': 0}, 'a', 'b'),
-Card('Test_6',{'CC': 0, 'GDP': 0, 'EF': -5}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_7',{'CC': 0, 'GDP': -5, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_8',{'CC': -5, 'GDP': 0, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_9',{'CC': 10, 'GDP': 10, 'EF': 10}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_10',{'CC': -10, 'GDP': -10, 'EF': -10}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_11',{'CC': 0, 'GDP': 0, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_12',{'CC': 20, 'GDP': 0, 'EF': 0}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_13',{'CC': 10, 'GDP': 20, 'EF': -10}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_14',{'CC': 5, 'GDP': 0, 'EF': -50}, {'MONEY': 70}, 'a', 'b'),
-Card('Test_15',{'CC': 0, 'GDP': -50, 'EF': 0}, {'MONEY': 70}, 'a', 'b'),
-Card('Test_16',{'CC': -10, 'GDP': -20, 'EF': -20}, {'MONEY': 40}, 'a', 'b'),
-Card('Test_17',{'CC': -10, 'GDP': 20, 'EF': 20}, {'MONEY': 40}, 'a', 'b'),
-Card('Test_18',{'CC': 0, 'GDP': -15, 'EF': -10}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_19',{'CC': 0, 'GDP': 0, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_20',{'CC': -5, 'GDP': 10, 'EF': 20}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_21',{'CC': 0, 'GDP': 30, 'EF': 0}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_22',{'CC': 20, 'GDP': 0, 'EF': -10}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_23',{'CC': 10, 'GDP': -20, 'EF': 0}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_24',{'CC': 0, 'GDP': 0, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_25',{'CC': -10, 'GDP': 10, 'EF': 10}, {'MONEY': 10}, 'a', 'b')]
+GOOD_PLAYER_CARDS = [Card('Test_1',{'CC': 10, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_2',{'CC': 2, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_3',{'CC': -10, 'GDP': 5, 'EF': 10, 'HI': 0}, {'MONEY': 5}, 'a', 'b'),
+Card('Test_4',{'CC': 30, 'GDP': 20, 'EF': -20, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_5',{'CC': 0, 'GDP': -10, 'EF': 10, 'HI': 0}, {'MONEY': 0}, 'a', 'b'),
+Card('Test_6',{'CC': 0, 'GDP': 0, 'EF': -5, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_7',{'CC': 0, 'GDP': -5, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_8',{'CC': -5, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_9',{'CC': 10, 'GDP': 10, 'EF': 10, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_10',{'CC': -10, 'GDP': -10, 'EF': -10, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_11',{'CC': 0, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_12',{'CC': 20, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_13',{'CC': 10, 'GDP': 20, 'EF': -10, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_14',{'CC': 5, 'GDP': 0, 'EF': -50, 'HI': 0}, {'MONEY': 70}, 'a', 'b'),
+Card('Test_15',{'CC': 0, 'GDP': -50, 'EF': 0, 'HI': 0}, {'MONEY': 70}, 'a', 'b'),
+Card('Test_16',{'CC': -10, 'GDP': -20, 'EF': -20, 'HI': 0}, {'MONEY': 40}, 'a', 'b'),
+Card('Test_17',{'CC': -10, 'GDP': 20, 'EF': 20, 'HI': 0}, {'MONEY': 40}, 'a', 'b'),
+Card('Test_18',{'CC': 0, 'GDP': -15, 'EF': -10, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_19',{'CC': 0, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_20',{'CC': -5, 'GDP': 10, 'EF': 20, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_21',{'CC': 0, 'GDP': 30, 'EF': 0, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_22',{'CC': 20, 'GDP': 0, 'EF': -10, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_23',{'CC': 10, 'GDP': -20, 'EF': 0, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_24',{'CC': 0, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_25',{'CC': -10, 'GDP': 10, 'EF': 10, 'HI': 0}, {'MONEY': 10}, 'a', 'b')]
 
 GOOD_PLAYER_RESOURCES = {'MONEY': 100}
 
-BAD_PLAYER_CARDS = [Card('Test_1',{'CC': 0, 'GDP': 10, 'EF': 10}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_2',{'CC': 0, 'GDP': 10, 'EF': 0}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_3',{'CC': 0, 'GDP': 20, 'EF': 20}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_4',{'CC': -10, 'GDP': 0, 'EF': 0}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_5',{'CC': 20, 'GDP': -30, 'EF': -20}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_6',{'CC': 0, 'GDP': 0, 'EF': 30}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_7',{'CC': 0, 'GDP': 40, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_8',{'CC': -10, 'GDP': 20, 'EF': 30}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_9',{'CC': 0, 'GDP': 0, 'EF': 50}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_10',{'CC': 0, 'GDP': 10, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_11',{'CC': 10, 'GDP': 0, 'EF': 10}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_12',{'CC': -20, 'GDP': 20, 'EF': 20}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_13',{'CC': 0, 'GDP': 0, 'EF': 30}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_14',{'CC': 30, 'GDP': 30, 'EF': 30}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_15',{'CC': 0, 'GDP': 0, 'EF': 0}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_16',{'CC': 40, 'GDP': 10, 'EF': 30}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_17',{'CC': -20, 'GDP': 10, 'EF': 40}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_18',{'CC': 0, 'GDP': 0, 'EF': 0}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_19',{'CC': 20, 'GDP': 20, 'EF': 10}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_20',{'CC': 10, 'GDP': 0, 'EF': 10}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_21',{'CC': 0, 'GDP': 20, 'EF': 20}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_22',{'CC': -10, 'GDP': 0, 'EF': 30}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_23',{'CC': 0, 'GDP': 30, 'EF': 40}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_24',{'CC': 0, 'GDP': 30, 'EF': 10}, {'MONEY': 50}, 'a', 'b'),
-Card('Test_25',{'CC': 20, 'GDP': 10, 'EF': 0}, {'MONEY': 10}, 'a', 'b')]
+BAD_PLAYER_CARDS = [Card('Test_1',{'CC': 0, 'GDP': 10, 'EF': 10, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_2',{'CC': 0, 'GDP': 10, 'EF': 0, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_3',{'CC': 0, 'GDP': 20, 'EF': 20, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_4',{'CC': -10, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_5',{'CC': 20, 'GDP': -30, 'EF': -20, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_6',{'CC': 0, 'GDP': 0, 'EF': 30, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_7',{'CC': 0, 'GDP': 40, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_8',{'CC': -10, 'GDP': 20, 'EF': 30, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_9',{'CC': 0, 'GDP': 0, 'EF': 50, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_10',{'CC': 0, 'GDP': 10, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_11',{'CC': 10, 'GDP': 0, 'EF': 10, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_12',{'CC': -20, 'GDP': 20, 'EF': 20, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_13',{'CC': 0, 'GDP': 0, 'EF': 30, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_14',{'CC': 30, 'GDP': 30, 'EF': 30,'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_15',{'CC': 0, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_16',{'CC': 40, 'GDP': 10, 'EF': 30, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_17',{'CC': -20, 'GDP': 10, 'EF': 40, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_18',{'CC': 0, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_19',{'CC': 20, 'GDP': 20, 'EF': 10, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_20',{'CC': 10, 'GDP': 0, 'EF': 10, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_21',{'CC': 0, 'GDP': 20, 'EF': 20, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_22',{'CC': -10, 'GDP': 0, 'EF': 30, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_23',{'CC': 0, 'GDP': 30, 'EF': 40, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_24',{'CC': 0, 'GDP': 30, 'EF': 10, 'HI': 0}, {'MONEY': 50}, 'a', 'b'),
+Card('Test_25',{'CC': 20, 'GDP': 10, 'EF': 0, 'HI': 0}, {'MONEY': 10}, 'a', 'b')]
 BAD_PLAYER_RESOURCES = {'MONEY': 100}
 
 GOOD_PLAYER = Avatar("Player 1.0", GOOD_PLAYER_CARDS, GOOD_PLAYER_RESOURCES)
@@ -173,11 +173,11 @@ USED = False
 
 AVATARS = [GOOD_PLAYER, BAD_PLAYER, GOOD_PLAYER2]
 UNPICKED_AVATARS = [GOOD_PLAYER, BAD_PLAYER, GOOD_PLAYER2]
-MOVEMENT = [Card('Test_1',{'CC': 0, 'GDP': 10, 'EF': 10}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_2',{'CC': 0, 'GDP': 10, 'EF': 0}, {'MONEY': 20}, 'a', 'b'),
-Card('Test_3',{'CC': 0, 'GDP': 20, 'EF': 20}, {'MONEY': 10}, 'a', 'b'),
-Card('Test_4',{'CC': -10, 'GDP': 0, 'EF': 0}, {'MONEY': 30}, 'a', 'b'),
-Card('Test_5',{'CC': 20, 'GDP': -30, 'EF': -20}, {'MONEY': 10}, 'a', 'b')]
+MOVEMENT = [Card('Test_1',{'CC': 0, 'GDP': 10, 'EF': 10, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_2',{'CC': 0, 'GDP': 10, 'EF': 0, 'HI': 0}, {'MONEY': 20}, 'a', 'b'),
+Card('Test_3',{'CC': 0, 'GDP': 20, 'EF': 20, 'HI': 0}, {'MONEY': 10}, 'a', 'b'),
+Card('Test_4',{'CC': -10, 'GDP': 0, 'EF': 0, 'HI': 0}, {'MONEY': 30}, 'a', 'b'),
+Card('Test_5',{'CC': 20, 'GDP': -30, 'EF': -20, 'HI': 0}, {'MONEY': 10}, 'a', 'b')]
 PLAYERS = 2
 CUR_PLAYER = 0
 
